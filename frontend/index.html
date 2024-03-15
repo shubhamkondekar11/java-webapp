@@ -1,0 +1,29 @@
+<!-- index.html -->
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h1> Hello from frontend </h1>
+    <button id="helloButton">Say Hello from Backend</button>
+    <div id="response"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#helloButton').click(function() {
+                $.ajax({
+                    url: '/api/hello', // Endpoint on backend
+                    type: 'GET',
+                    success: function(response) {
+                        $('#response').text(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                        $('#response').text('Error fetching data from backend');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
